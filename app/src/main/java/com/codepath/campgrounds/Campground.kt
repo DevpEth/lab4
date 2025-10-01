@@ -1,19 +1,36 @@
 package com.codepath.campgrounds
 
-import android.support.annotation.Keep
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
-// TODO: Create a data class for the Data Response
+// Response wrapper from API
+@Serializable
+data class CampgroundResponse(
+    @SerialName("data")
+    val data: List<Campground>
+)
 
-
-// TODO: Implement remaining keys of the Campground data class
-@Keep
+// Campground data class
+@Parcelize
 @Serializable
 data class Campground(
     @SerialName("name")
-    val name: String?,
-) : java.io.Serializable
+    val name: String? = null,
+    @SerialName("description")
+    val description: String? = null,
+    @SerialName("latitude")
+    val latitude: String? = null,
+    @SerialName("longitude")
+    val longitude: String? = null,
+    @SerialName("images")
+    val images: List<CampgroundImage>? = emptyList()
+) : Parcelable
 
-
-// TODO: Create a data class for the Image Response
+@Parcelize
+@Serializable
+data class CampgroundImage(
+    @SerialName("url")
+    val url: String? = null
+) : Parcelable
